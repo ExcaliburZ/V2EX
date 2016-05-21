@@ -1,4 +1,4 @@
-package com.wings.v2ex.util;
+package com.wings.v2ex.model.domain;
 
 /**
  * Created by wing on 2016/5/19.
