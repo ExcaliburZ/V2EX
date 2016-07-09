@@ -105,4 +105,20 @@ public class Topic {
         this.last_touched = last_touched;
     }
 
+    @Override
+    public String toString() {
+        return "Topic{" +
+                "content='" + content + '\'' +
+                ", id=" + id +
+                ", title='" + title + '\'' +
+                ", url='" + url + '\'' +
+                ", content_rendered='" + content_rendered + '\'' +
+                ", replies=" + replies +
+                ", member=" + member +
+                ", node=" + node +
+                ", created=" + created +
+                ", last_modified=" + last_modified +
+                ", last_touched=" + last_touched +
+                '}';
+    }
 }

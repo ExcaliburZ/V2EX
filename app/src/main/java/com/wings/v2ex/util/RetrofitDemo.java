@@ -74,7 +74,6 @@ public class RetrofitDemo {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
         ITopicsBiz iTopicsBiz = retrofit.create(ITopicsBiz.class);
-        Log.i(TAG, "getLatestTopicsRxDemo: run");
         iTopicsBiz.getLatestTopicsRx()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -101,7 +100,9 @@ public class RetrofitDemo {
                 .baseUrl("https://www.v2ex.com/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        //动态代理创建ITopicsBiz对象
         ITopicsBiz iTopTopicsBiz = retrofit.create(ITopicsBiz.class);
+        //Invoke把方法解析成Request,在构造一个OkHttpCall
         Call<List<Reply>> topicRepliesById = iTopTopicsBiz.getTopicRepliesById(id);
         topicRepliesById.enqueue(new Callback<List<Reply>>() {
             @Override

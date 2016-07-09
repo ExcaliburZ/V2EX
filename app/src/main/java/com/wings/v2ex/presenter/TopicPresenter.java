@@ -51,12 +51,12 @@ public class TopicPresenter implements TopicsContract.Presenter {
 
             @Override
             public void onCompleted() {
-
+                System.out.println("onCompleted ......");
             }
 
             @Override
             public void onError(Throwable e) {
-
+                System.out.println("error ......");
             }
         });
     }

@@ -23,7 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * A simple {@link Fragment} subclass.
+ * MainContent include a lot of Tabs such as Latest tab,Hotest tab.
  */
 public class TopicTabsFragment extends Fragment {
 
@@ -70,7 +70,7 @@ public class TopicTabsFragment extends Fragment {
         }
 
         public Fragment getItem(int position) {
-            return new TopicsListFragment();
+            return new TopicsListFragment().setId(mTabs.get(position).getId());
         }
 
         @Override
