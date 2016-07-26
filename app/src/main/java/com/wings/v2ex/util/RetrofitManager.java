@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.wings.v2ex.model.domain.Reply;
 import com.wings.v2ex.model.domain.Topic;
+import com.wings.v2ex.util.api.ITopicsBiz;
 
 import java.io.IOException;
 import java.util.List;
@@ -21,18 +22,18 @@ import rx.schedulers.Schedulers;
 /**
  * Created by wing on 2016/5/19.
  */
-public class RetrofitDemo {
+public class RetrofitManager {
     private final static String BASE_URL = "http://www.v2ex.com/api/";
-    private final static String TAG = "RetrofitDemo";
-    private static RetrofitDemo instance = new RetrofitDemo();
+    private final static String TAG = "RetrofitManager";
+    private static RetrofitManager instance = new RetrofitManager();
     private static ITopicsBiz mITopTopicsBiz;
     private final Retrofit mRetrofit;
 
-    public static RetrofitDemo getInstance() {
+    public static RetrofitManager getInstance() {
         return instance;
     }
 
-    private RetrofitDemo() {
+    private RetrofitManager() {
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -67,6 +68,9 @@ public class RetrofitDemo {
         return null;
     }
 
+    /**
+     * RxJava+Retrofit 完整例子
+     */
     public void getLatestTopicsRxDemo() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -113,7 +117,7 @@ public class RetrofitDemo {
 
             @Override
             public void onFailure(Call<List<Reply>> call, Throwable t) {
-                Log.i(TAG, "onFailure: fail!!!!!!!!!!");
+                Log.i(TAG, "onFailure: fail");
             }
         });
     }

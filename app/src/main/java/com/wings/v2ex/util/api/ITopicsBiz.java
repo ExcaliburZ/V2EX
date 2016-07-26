@@ -1,4 +1,4 @@
-package com.wings.v2ex.util;
+package com.wings.v2ex.util.api;
 
 import com.wings.v2ex.model.domain.Reply;
 import com.wings.v2ex.model.domain.Topic;

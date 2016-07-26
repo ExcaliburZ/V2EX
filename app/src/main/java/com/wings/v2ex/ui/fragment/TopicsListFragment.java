@@ -6,11 +6,16 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.wings.v2ex.GlobalConstant;
 import com.wings.v2ex.R;
 import com.wings.v2ex.TopicsContract;
@@ -26,9 +31,11 @@ import java.util.List;
  */
 public class TopicsListFragment extends Fragment implements TopicsContract.View {
 
+    private static final String TAG = "TopicsListFragment";
     private int id;
     private int mColumnCount = 1;
     private RecyclerView mRecyclerView;
+    private List<Topic> mTopicList;
 
 
     /**
@@ -62,7 +69,6 @@ public class TopicsListFragment extends Fragment implements TopicsContract.View 
             } else {
                 mRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-//            recyclerView.setAdapter(new TopicsListRecyclerViewAdapter());
         }
         initData();
         return view;
@@ -83,39 +89,30 @@ public class TopicsListFragment extends Fragment implements TopicsContract.View 
 
     @Override
     public void showTopics(final List<Topic> TopicList) {
-        mRecyclerView.setAdapter(new RecyclerView.Adapter() {
+        mTopicList = TopicList;
+        QuickAdapter adapter = new QuickAdapter();
+        mRecyclerView.setAdapter(adapter);
+        adapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
             @Override
-            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                View view = View.inflate(
-                        TopicsListFragment.this.getContext(), R.layout.item_tips, null);
-                TipViewHolder viewHolder = new TipViewHolder(view);
-                return viewHolder;
-            }
-
-            @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-                TipViewHolder tipViewHolder = (TipViewHolder) holder;
-                tipViewHolder.title.setText(TopicList.get(position).getTitle());
-                tipViewHolder.replies.setText(String.valueOf(TopicList.get(position).getReplies()));
-            }
-
-            @Override
-            public int getItemCount() {
-                return TopicList.size();
+            public void onItemClick(View view, int i) {
+                Log.i(TAG, "onItemClick: position ::"
+                        + i + "\nitem.title ::"
+                        + mTopicList.get(i).getTitle());
             }
         });
     }
 
-    class TipViewHolder extends RecyclerView.ViewHolder {
-        public TextView title;
-        public TextView replies;
-
-        public TipViewHolder(View itemView) {
-            super(itemView);
-            title = (TextView) itemView.findViewById(R.id.tv_title);
-            replies = (TextView) itemView.findViewById(R.id.tv_replies);
+    public class QuickAdapter extends BaseQuickAdapter<Topic> {
+        public QuickAdapter() {
+            super(R.layout.item_list_topic, mTopicList);
         }
 
+        @Override
+        protected void convert(BaseViewHolder helper, final Topic item) {
+            helper.setText(R.id.tv_title, item.getTitle())
+                    .setText(R.id.tv_replies, String.valueOf(item.getReplies()));
+//            Glide.with(mContext).load(item.getUserAvatar()).crossFade().into((ImageView) helper.getView(R.id.iv));
+        }
     }
 
     @Override

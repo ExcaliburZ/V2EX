@@ -11,4 +11,8 @@
     <dimen name="appbar_elevation">4dp</dimen>
     <dimen name="text_margin">16dp</dimen>
 
+    <dimen name="item_height_middle">50dp</dimen>
+    <dimen name="margin_small">5dp</dimen>
+    <dimen name="padding_small">3dp</dimen>
+
 </resources>
