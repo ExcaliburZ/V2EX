@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  * Created by wing on 2016/5/6.
+ *
  */
 public interface TopicsContract {
 

@@ -18,6 +18,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    dataBinding {
+        enabled = true
+    }
 }
 buildscript {
     repositories {
@@ -51,4 +54,7 @@ dependencies {
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:v1.9.3'
     compile 'com.google.dagger:dagger:2.0.2'
     apt 'com.google.dagger:dagger-compiler:2.0.2'
+    compile 'com.orhanobut:logger:1.15'
+    compile 'org.mockito:mockito-core:2.0.106-beta'
+    testCompile "org.robolectric:robolectric:3.1.1"
 }

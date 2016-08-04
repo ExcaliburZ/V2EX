@@ -1,6 +1,7 @@
 package com.wings.v2ex.ui.fragment;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,15 +11,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.wings.v2ex.GlobalConstant;
 import com.wings.v2ex.R;
 import com.wings.v2ex.TopicsContract;
+import com.wings.v2ex.databinding.ItemListTopicBinding;
 import com.wings.v2ex.model.domain.Topic;
 import com.wings.v2ex.presenter.TopicPresenter;
 
@@ -37,11 +36,6 @@ public class TopicsListFragment extends Fragment implements TopicsContract.View 
     private RecyclerView mRecyclerView;
     private List<Topic> mTopicList;
 
-
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
     public TopicsListFragment() {
     }
 
@@ -109,8 +103,8 @@ public class TopicsListFragment extends Fragment implements TopicsContract.View 
 
         @Override
         protected void convert(BaseViewHolder helper, final Topic item) {
-            helper.setText(R.id.tv_title, item.getTitle())
-                    .setText(R.id.tv_replies, String.valueOf(item.getReplies()));
+            ItemListTopicBinding bind = DataBindingUtil.bind(helper.itemView);
+            bind.setTopic(item);
 //            Glide.with(mContext).load(item.getUserAvatar()).crossFade().into((ImageView) helper.getView(R.id.iv));
         }
     }

@@ -1,5 +1,7 @@
 package com.wings.v2ex.presenter;
 
+import android.util.Log;
+
 import com.wings.v2ex.TopicsContract;
 import com.wings.v2ex.model.ITopicModel;
 import com.wings.v2ex.model.TopicModel;
@@ -13,6 +15,7 @@ import rx.Subscriber;
  * Created by wing on 2016/5/19.
  */
 public class TopicPresenter implements TopicsContract.Presenter {
+    private static final String TAG = "TopicPresenter";
     private ITopicModel mITopicModel;
     private TopicsContract.View mView;
 
@@ -31,12 +34,10 @@ public class TopicPresenter implements TopicsContract.Presenter {
 
             @Override
             public void onCompleted() {
-
             }
 
             @Override
             public void onError(Throwable e) {
-
             }
         });
     }
@@ -51,12 +52,12 @@ public class TopicPresenter implements TopicsContract.Presenter {
 
             @Override
             public void onCompleted() {
-                System.out.println("onCompleted ......");
+                Log.i(TAG, "onCompleted: ");
             }
 
             @Override
             public void onError(Throwable e) {
-                System.out.println("error ......");
+                Log.e(TAG, "onError: " + e);
             }
         });
     }

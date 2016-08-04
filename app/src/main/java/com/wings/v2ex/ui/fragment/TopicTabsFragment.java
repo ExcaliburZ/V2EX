@@ -23,7 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * MainContent include a lot of Tabs such as Latest tab,Hotest tab.
+ * MainContent include a lot of Tabs such as Latest tab,Hot tab.
  */
 public class TopicTabsFragment extends Fragment {
 
