@@ -17,12 +17,12 @@ public interface ITopicsBiz {
     @GET("topics/latest.json")
     Call<List<Topic>> getLatestTopics();
 
+    @GET("replies/show.json")
+    Call<List<Reply>> getTopicRepliesById(@Query("topic_id") int id);
+
     @GET("topics/latest.json")
     Observable<List<Topic>> getLatestTopicsRx();
 
     @GET("topics/hot.json")
     Observable<List<Topic>> getHotTopicsRx();
-
-    @GET("replies/show.json")
-    Call<List<Reply>> getTopicRepliesById(@Query("topic_id") int id);
 }
